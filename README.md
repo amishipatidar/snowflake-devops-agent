@@ -8,7 +8,7 @@
 
 ---
 
-## 🎯 Business Problem
+## Business Problem
 
 Enterprise DevOps teams drown in **alert noise** — averaging 70% false-positive rates. Engineers waste hours triaging alerts that don't need action, while critical incidents get buried. Vigil solves this by:
 
@@ -25,7 +25,7 @@ Enterprise DevOps teams drown in **alert noise** — averaging 70% false-positiv
 
 ---
 
-## 🏗 Architecture
+## Architecture
 
 ```
 Log Simulator → Ingestion → Anomaly Detector → Context Retriever → LLM Reasoning → Decision Router
@@ -47,7 +47,7 @@ Log Simulator → Ingestion → Anomaly Detector → Context Retriever → LLM R
 
 ---
 
-## 🔧 Custom CoCo Skills (3 Skills)
+## Custom CoCo Skills (3 Skills)
 
 ### 1. `$incident-auto-resolve`
 Automatically resolves known infrastructure incidents. Triggered when the reasoning engine identifies a HIGH-confidence match with a previously auto-resolved issue.
@@ -60,7 +60,7 @@ Intelligently suppresses false-positive alerts. Logs the decision with full reas
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Node.js 18+
@@ -113,7 +113,7 @@ curl -X POST http://localhost:3001/api/simulate/anomaly \
 
 ---
 
-## 🎮 Demo Scenarios
+## Demo Scenarios
 
 | # | Scenario | Service | Pattern | Expected Action | Why |
 |---|----------|---------|---------|-----------------|-----|
@@ -123,7 +123,7 @@ curl -X POST http://localhost:3001/api/simulate/anomaly \
 
 ---
 
-## 🧠 How the Reasoning Engine Works
+## How the Reasoning Engine Works
 
 Vigil doesn't just threshold-alert. For each anomaly, it performs:
 
@@ -137,7 +137,7 @@ Every step produces an **inspectable reasoning trace** visible in the dashboard.
 
 ---
 
-## 🏢 Production Path: Using Real Data
+## Production Path: Using Real Data
 
 Vigil is designed as a fully functional proof-of-concept that currently uses an internal `LogSimulator` to generate traffic for demo purposes. 
 
@@ -151,7 +151,7 @@ The rest of the architecture — the Anomaly Detector, Context Retriever, Groq A
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 .cortex/skills/
@@ -185,7 +185,7 @@ dashboard/                            # React + Vite dashboard
 
 ---
 
-## 🔌 CoCo CLI Integration
+## CoCo CLI Integration
 
 Vigil integrates with CoCo CLI in two modes:
 
@@ -204,7 +204,7 @@ Executes real `cortex -p "$skill-name ..."` commands. Requires CoCo CLI installe
 
 ---
 
-## 📄 License
+## License
 
 MIT
 # snowflake-devops-agent
