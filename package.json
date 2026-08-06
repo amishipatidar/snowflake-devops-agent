@@ -1,0 +1,24 @@
+{
+  "name": "incidentiq",
+  "version": "1.0.0",
+  "description": "AI-driven DevOps Incident Response Automation Agent — powered by Snowflake CoCo CLI",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "seed": "node src/db/seed.js",
+    "simulate": "node src/simulator/log-generator.js",
+    "dev": "concurrently \"node src/server.js\" \"cd dashboard && npm run dev\"",
+    "setup": "npm install && cd dashboard && npm install && cd .. && npm run seed"
+  },
+  "dependencies": {
+    "sql.js": "^1.11.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.0",
+    "groq-sdk": "^0.8.0",
+    "natural": "^8.0.1",
+    "uuid": "^11.0.3",
+    "concurrently": "^9.1.0"
+  }
+}
