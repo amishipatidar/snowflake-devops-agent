@@ -30,11 +30,11 @@ Enterprise DevOps teams drown in **alert noise** — averaging 70% false-positiv
 ```
 Log Simulator → Ingestion → Anomaly Detector → Context Retriever → LLM Reasoning → Decision Router
                                                                                          ↓
-                                                                    ┌─────────────────────┤─────────────────────┐
-                                                                    ↓                     ↓                     ↓
-                                                           CoCo: Auto-Resolve    CoCo: Escalate        CoCo: Suppress
-                                                              ($incident-          ($incident-            ($incident-
-                                                            auto-resolve)          escalate)              suppress)
+                                                       ┌──────────────┼──────────────┼──────────────┐
+                                                       ↓              ↓              ↓              ↓
+                                                CoCo: Auto-Resolve  CoCo: Escalate  CoCo: Suppress  CoCo: Lockdown
+                                                  ($incident-        ($incident-      ($incident-     ($incident-
+                                                 auto-resolve)        escalate)        suppress)       lockdown)
 ```
 
 ### Tech Stack
@@ -42,12 +42,12 @@ Log Simulator → Ingestion → Anomaly Detector → Context Retriever → LLM R
 - **Database**: SQLite (via sql.js — pure WASM)
 - **LLM**: Groq (`llama-3.1-70b-versatile`)
 - **Similarity Search**: TF-IDF (no external embedding API needed)
-- **Orchestration**: Snowflake CoCo CLI (3 custom skills)
+- **Orchestration**: Snowflake CoCo CLI (4 custom skills)
 - **Dashboard**: React + Vite (real-time SSE streaming)
 
 ---
 
-## Custom CoCo Skills (3 Skills)
+## Custom CoCo Skills (4 Skills)
 
 ### 1. `$incident-auto-resolve`
 Automatically resolves known infrastructure incidents. Triggered when the reasoning engine identifies a HIGH-confidence match with a previously auto-resolved issue.
@@ -57,6 +57,9 @@ Creates comprehensive incident tickets with AI-generated root-cause analysis. Ro
 
 ### 3. `$incident-suppress`
 Intelligently suppresses false-positive alerts. Logs the decision with full reasoning trace for audit compliance. Proves the agent avoids noise.
+
+### 4. `$incident-lockdown`
+Security-focused skill for brute-force and credential stuffing attacks. Deploys WAF rate-limiting rules, blocks offending IP ranges, and enables CAPTCHA on authentication endpoints.
 
 ---
 
@@ -157,7 +160,8 @@ The rest of the architecture — the Anomaly Detector, Context Retriever, Groq A
 .cortex/skills/
 ├── incident-auto-resolve/SKILL.md    # CoCo Skill 1
 ├── incident-escalate/SKILL.md        # CoCo Skill 2
-└── incident-suppress/SKILL.md        # CoCo Skill 3
+├── incident-suppress/SKILL.md        # CoCo Skill 3
+└── incident-lockdown/SKILL.md        # CoCo Skill 4
 
 src/
 ├── db/
