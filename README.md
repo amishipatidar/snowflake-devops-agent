@@ -207,4 +207,3 @@ Executes real `cortex -p "$skill-name ..."` commands. Requires CoCo CLI installe
 ## License
 
 MIT
-# snowflake-devops-agent
