@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node src/server.js",
     "seed": "node src/db/seed.js",
+    "build": "cd dashboard && npm install && npm run build",
     "simulate": "node src/simulator/log-generator.js",
     "dev": "concurrently \"node src/server.js\" \"cd dashboard && npm run dev\"",
     "setup": "npm install && cd dashboard && npm install && cd .. && npm run seed"

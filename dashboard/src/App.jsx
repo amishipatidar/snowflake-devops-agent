@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
 
-const API_BASE = '/api';
+// In production (when served from Express), use relative path. In dev, use localhost.
+const API_BASE = import.meta.env.PROD ? '/api' : 'http://localhost:3001/api';
 
 // ─── Hook: SSE Event Stream ──────────────────────────────
 function useEventStream() {

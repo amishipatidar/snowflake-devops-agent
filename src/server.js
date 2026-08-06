@@ -96,6 +96,10 @@ async function main() {
   app.use(cors());
   app.use(express.json());
 
+  // Serve the React dashboard statically in production
+  const dashboardPath = path.join(__dirname, '..', 'dashboard', 'dist');
+  app.use(express.static(dashboardPath));
+
   // SSE endpoint
   app.get('/api/events', (req, res) => {
     res.writeHead(200, {
